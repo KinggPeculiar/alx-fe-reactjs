@@ -26,10 +26,9 @@ function App() {
       <img src={reactLogo} alt="React logo" className='logo' />
 
       {/* custom component */}
-      <WelcomeMessage />
       <Header />
+      <WelcomeMessage />
       <MainContent />
-      <Footer />
       <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
       <Button />
 
@@ -38,7 +37,8 @@ function App() {
           count is {count}
         </button>
       </div>
-    </>
+
+      <Footer />    </>
   );
 }
 
