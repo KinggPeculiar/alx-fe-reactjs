@@ -8,21 +8,20 @@ import './App.css'
 
 function App() {
 
-  return (
-    <Router>
-      {/* Navbar always visible */}
-      <Navbar />
-      
-      {/* Route definitions */}
-      <Routes>
-        {/* Each path matches a component */}
-        <Route path="/" element={<Home />} />
-        <Route path="/" element={<About />} />
-        <Route path="/" element={<Services />} />
-        <Route path="/" element={<Contact />} />
-      </Routes>
-    </Router>
+  return (    
+      <Router>
+        {/* Navbar always visible */}
+        <Navbar />
+        
+        {/* Route definitions */}
+        <Routes>
+          {/* Each path matches a component */}
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </Router>
   );
 }
-
 export default App
