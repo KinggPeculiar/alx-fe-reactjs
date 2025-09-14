@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
-import useRecipeStore from "../store/recipeStore";
-
+import useRecipeStore from "./recipeStore";
 const RecipeDetail = () => {
   const { id } = useParams();
   const recipes = useRecipeStore((state) => state.recipes);

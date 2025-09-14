@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RecipeList from "./components/RecipeList";
 import AddRecipeForm from "./components/AddRecipeForm";
 import SearchBar from "./components/SearchBar";
-import RecipeDetail from "./components/RecipeDetail"; // new component
 
 function App() {
   return (
@@ -10,21 +9,24 @@ function App() {
       <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
         <h1>Recipe Sharing App</h1>
 
+        {/* Main page */}
         <Routes>
-          {/* Home Page with search and list */}
           <Route
             path="/"
             element={
               <>
                 <SearchBar />
-                <RecipeList />
                 <AddRecipeForm />
+                <RecipeList />
               </>
             }
           />
 
-          {/* Dynamic recipe detail page */}
-          <Route path="/recipes/:id" element={<RecipeDetail />} />
+          {/* Placeholder for recipe detail page */}
+          <Route
+            path="/recipes/:id"
+            element={<div>Recipe Detail Page (To be implemented)</div>}
+          />
         </Routes>
       </div>
     </Router>

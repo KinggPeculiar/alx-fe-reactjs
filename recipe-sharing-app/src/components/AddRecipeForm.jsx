@@ -6,10 +6,16 @@ const AddRecipeForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!title || !description) return;
-    addRecipe({ id: Date.now(), title, description });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Prevent empty submissions
+    if (!title.trim() || !description.trim()) return;
+
+    // Add recipe
+    addRecipe({ id: Date.now(), title: title.trim(), description: description.trim() });
+
+    // Clear input fields
     setTitle("");
     setDescription("");
   };
@@ -19,14 +25,14 @@ const AddRecipeForm = () => {
       <h2>Add a Recipe</h2>
       <input
         type="text"
+        placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="Title"
       />
       <textarea
+        placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        placeholder="Description"
       />
       <button type="submit">Add Recipe</button>
     </form>
