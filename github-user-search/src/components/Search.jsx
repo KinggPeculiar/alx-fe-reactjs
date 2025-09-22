@@ -1,6 +1,6 @@
 // components/Search.jsx
 import { useState } from "react";
-import { searchUsers } from "../services/githubService";
+import { fetchUserData } from "../services/githubService";
 
 export default function Search() {
   const [username, setUsername] = useState("");
@@ -18,7 +18,7 @@ export default function Search() {
     setResults([]);
 
     try {
-      const data = await searchUsers({ username, location, minRepos, page: 1 });
+      const data = await fetchUserData({ username, location, minRepos, page: 1 });
       setResults(data.items);
       setPage(1);
     } catch (err) {
@@ -31,7 +31,7 @@ export default function Search() {
   const handleLoadMore = async () => {
     const nextPage = page + 1;
     try {
-      const data = await searchUsers({ username, location, minRepos, page: nextPage });
+      const data = await fetchUserData({ username, location, minRepos, page: nextPage });
       setResults((prev) => [...prev, ...data.items]);
       setPage(nextPage);
     } catch (err) {
