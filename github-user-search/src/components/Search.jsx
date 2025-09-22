@@ -20,7 +20,7 @@ function Search() {
       if (err.response) {
         // Axios provides status codes
         if (err.response.status === 404) {
-          setError("User not found. Please check the username.");
+          setError("Looks like we cant find the user.");
         } else if (err.response.status === 403) {
           setError("Rate limit exceeded. Try again later or use an API key.");
         } else if (err.response.status === 401) {
