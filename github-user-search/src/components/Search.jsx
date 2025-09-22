@@ -1,0 +1,67 @@
+import { useState } from "react";
+import { fetchUserData } from "../services/githubService";
+
+function Search() {
+  const [username, setUsername] = useState("");
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setUser(null);
+
+    try {
+      const data = await fetchUserData(username);
+      setUser(data);
+    } catch (err) {
+      if (err.response) {
+        // Axios provides status codes
+        if (err.response.status === 404) {
+          setError("User not found. Please check the username.");
+        } else if (err.response.status === 403) {
+          setError("Rate limit exceeded. Try again later or use an API key.");
+        } else if (err.response.status === 401) {
+          setError("Unauthorized. Your API key may be invalid.");
+        } else {
+          setError("An unexpected error occurred.");
+        }
+      } else {
+        setError("Network error. Please check your connection.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter GitHub username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      {/* Conditional rendering */}
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {user && (
+        <div>
+          <img src={user.avatar_url} alt="avatar" width="100" />
+          <h2>{user.login}</h2>
+          <a href={user.html_url} target="_blank" rel="noreferrer">
+            View Profile
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Search;

@@ -1,14 +1,21 @@
+import axios from "axios";
+
 const GITHUB_API_KEY = import.meta.env.VITE_APP_GITHUB_API_KEY;
 
-export async function fetchGitHubUser(username) {
-    const response = await fetch(`https://api.github.com/users/${username}`, {
-        headers: {
-            Authorization: `token ${GITHUB_API_KEY}`, //if API key is required
-        },
-    });
+// Create an axios instance with default settings
+const api = axios.create({
+  baseURL: "https://api.github.com/",
+  headers: GITHUB_API_KEY
+    ? { Authorization: `token ${GITHUB_API_KEY}` }
+    : {},
+});
 
-    if (!response.ok) {
-        throw new Error("Failed to fetch rerpos");
-    }
-    return response.json();
+// Function to fetch a GitHub user
+export async function fetchGitHubUser(username) {
+  try {
+    const response = await api.get(`/users/${username}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch user");
+  }
 }
