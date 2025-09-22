@@ -1,0 +1,38 @@
+.profile-intro {
+    display: block;
+    width: 471px;
+    height: 217px;
+    text-align: left;
+}
+
+.profile-name {
+    display: inline;
+    color: rgb(226, 232, 240);
+    font-size: 3rem;
+    font-weight: bolder;
+    -webkit-text-stroke: 2px black; /* Chrome/Edge/Safari */
+    text-shadow: 
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px  1px 0 black,
+        1px  1px 0 black; /* Firefox fallback */   
+}
+
+.profile-title {
+    color: rgb(226, 232, 240);
+    font-size: 1.6rem;
+    font-weight: normal;
+    border: 1px solid black;
+}
+
+.profile-tagline {
+    display: block;
+    color: rgb(209, 212, 215);
+    font-size: 1rem;
+    font-weight: normal;
+    border: none;
+}
+
+.break {
+    display: block;
+}
