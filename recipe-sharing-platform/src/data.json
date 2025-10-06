@@ -1,26 +1,44 @@
 [
-    {
-        "id": 1,
-        "title": "Spaghetti Carbonara",
-        "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-        "image": "https://via.placeholder.com/150"
-    },
-    {
-        "id": 2,
-        "title": "Chicken Tikka Masala",
-        "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-        "image": "https://via.placeholder.com/150"
-    },
-    {
-        "id": 3,
-        "title": "Tikka Masala",
-        "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-        "image": "https://via.placeholder.com/150"
-    },
-    {
-        "id": 4,
-        "title": "Chicken Tikka Masala",
-        "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-        "image": "https://via.placeholder.com/150"
-    }    
+  {
+    "id": 1,
+    "title": "Spaghetti Carbonara",
+    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
+    "image": "https://via.placeholder.com/300x200",
+    "ingredients": ["Spaghetti", "Eggs", "Pancetta", "Parmesan Cheese", "Black Pepper"],
+    "instructions": [
+      "Boil the spaghetti until al dente.",
+      "Fry the pancetta until crisp.",
+      "Whisk together eggs and grated cheese.",
+      "Combine pasta, pancetta, and egg mixture off heat.",
+      "Season with black pepper and serve immediately."
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Chicken Tikka Masala",
+    "summary": "Grilled chicken pieces cooked in a rich, creamy tomato sauce.",
+    "image": "https://via.placeholder.com/300x200",
+    "ingredients": ["Chicken", "Yogurt", "Garlic", "Tomatoes", "Cream", "Spices"],
+    "instructions": [
+      "Marinate chicken in yogurt and spices.",
+      "Grill until slightly charred.",
+      "Simmer tomato sauce with cream and spices.",
+      "Add grilled chicken and cook for 10 minutes.",
+      "Serve hot with rice or naan."
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Vegetable Stir-Fry",
+    "summary": "Quick and colorful mix of vegetables stir-fried with soy sauce.",
+    "image": "https://via.placeholder.com/300x200",
+    "ingredients": ["Broccoli", "Carrots", "Bell Peppers", "Soy Sauce", "Garlic", "Ginger"],
+    "instructions": [
+      "Heat oil in a wok.",
+      "Add garlic and ginger; sauté briefly.",
+      "Add vegetables and stir-fry until crisp-tender.",
+      "Pour in soy sauce and toss to coat.",
+      "Serve hot over rice or noodles."
+    ]
+  }
 ]
