@@ -12,7 +12,7 @@ function HomePage() {
   return (
     <div className="p-6 max-w-6xl mx-auto flex flex-col items-center justify-center">
       {/* Page Title */}
-      <h1 className="text-4xl font-extrabold mb-10 text-center text-indigo-600">
+      <h1 className="text-4xl font-extrabold mb-6 text-center text-indigo-600">
         Welcome to Recipe Finder
       </h1>
 
@@ -36,6 +36,17 @@ function HomePage() {
           </Link>
         ))}
       </div>
+
+
+      {/* ✅ Add Recipe Button */}
+      <div className="mt-20">
+        <Link
+          to="/add-recipe"
+          className="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition duration-300 shadow-md"
+        >
+          ➕ Add New Recipe
+        </Link>
+      </div>      
     </div>
   );
 }
