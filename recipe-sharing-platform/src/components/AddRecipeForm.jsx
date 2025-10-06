@@ -10,53 +10,45 @@ const AddRecipeForm = () => {
     steps: "",
   });
 
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
+
+  // Validation function
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.title.trim()) newErrors.title = "Title is required";
+    if (!formData.ingredients.trim()) newErrors.ingredients = "Ingredients are required";
+    if (!formData.steps.trim()) newErrors.steps = "Steps are required";
+    return newErrors;
+  };
 
   const handleChange = (e) => {
-    // Explicitly use e.target.value to satisfy the checker
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    // Clear specific error when user starts typing again
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Simple validation
-    if (!formData.title || !formData.ingredients || !formData.steps) {
-      setError("All fields are required!");
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       return;
     }
 
-    setError("");
-
-    // Normally, you’d send this to a backend or local state
     console.log("New recipe added:", formData);
-
-    // Redirect user to homepage after submit
     navigate("/");
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6">
       <div className="bg-white shadow-lg rounded-2xl w-full max-w-2xl p-8">
-        {/* Title */}
         <h2 className="text-3xl font-extrabold text-indigo-600 text-center mb-6">
           Add a New Recipe
         </h2>
 
-        {/* Error message */}
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4 text-center">
-            {error}
-          </div>
-        )}
-
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Recipe Title */}
           <div>
@@ -71,6 +63,9 @@ const AddRecipeForm = () => {
               placeholder="e.g. Spaghetti Carbonara"
               className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
             />
+            {errors.title && (
+              <p className="text-red-600 text-sm mt-1">{errors.title}</p>
+            )}
           </div>
 
           {/* Ingredients */}
@@ -86,6 +81,9 @@ const AddRecipeForm = () => {
               rows="4"
               className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
             />
+            {errors.ingredients && (
+              <p className="text-red-600 text-sm mt-1">{errors.ingredients}</p>
+            )}
           </div>
 
           {/* Preparation Steps */}
@@ -101,6 +99,9 @@ const AddRecipeForm = () => {
               rows="5"
               className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
             />
+            {errors.steps && (
+              <p className="text-red-600 text-sm mt-1">{errors.steps}</p>
+            )}
           </div>
 
           {/* Submit Button */}
