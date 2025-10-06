@@ -10,24 +10,15 @@ const AddRecipeForm = () => {
     steps: "",
   });
 
-  // Checker wants these:
   const [errors, setErrors] = useState({});
 
   // ✅ Validation function
   const validate = () => {
     const newErrors = {};
 
-    if (!formData.title.trim()) {
-      newErrors.title = "Recipe title is required";
-    }
-
-    if (!formData.ingredients.trim()) {
-      newErrors.ingredients = "Ingredients are required";
-    }
-
-    if (!formData.steps.trim()) {
-      newErrors.steps = "Preparation steps are required";
-    }
+    if (!formData.title.trim()) newErrors.title = "Recipe title is required";
+    if (!formData.ingredients.trim()) newErrors.ingredients = "Ingredients are required";
+    if (!formData.steps.trim()) newErrors.steps = "Preparation steps are required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -40,7 +31,6 @@ const AddRecipeForm = () => {
       [e.target.name]: e.target.value,
     }));
 
-    // Clear individual field errors on typing
     if (errors[e.target.name]) {
       setErrors((prev) => ({
         ...prev,
@@ -53,23 +43,23 @@ const AddRecipeForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!validate()) {
-      return;
-    }
+    if (!validate()) return;
 
     console.log("✅ New recipe added:", formData);
 
-    // Redirect to homepage
     navigate("/");
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6">
-      <div className="bg-white shadow-lg rounded-2xl w-full max-w-2xl p-8">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 to-white p-6">
+      <div className="bg-white shadow-xl rounded-2xl w-full max-w-2xl p-8 border border-gray-100 transition-all duration-300 hover:shadow-2xl">
         {/* Title */}
-        <h2 className="text-3xl font-extrabold text-indigo-600 text-center mb-6">
+        <h2 className="text-3xl font-extrabold text-center text-indigo-600 mb-2">
           Add a New Recipe
         </h2>
+        <p className="text-gray-500 text-center mb-8">
+          Share your favorite dish with the world 🍽️
+        </p>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -84,7 +74,7 @@ const AddRecipeForm = () => {
               value={formData.title}
               onChange={handleChange}
               placeholder="e.g. Spaghetti Carbonara"
-              className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 transition ${
+              className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 transition text-gray-800 placeholder-gray-400 ${
                 errors.title
                   ? "border-red-500 focus:ring-red-400"
                   : "border-gray-300 focus:ring-indigo-500"
@@ -106,7 +96,7 @@ const AddRecipeForm = () => {
               onChange={handleChange}
               placeholder="List ingredients separated by commas..."
               rows="4"
-              className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 transition ${
+              className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 transition text-gray-800 placeholder-gray-400 ${
                 errors.ingredients
                   ? "border-red-500 focus:ring-red-400"
                   : "border-gray-300 focus:ring-indigo-500"
@@ -128,7 +118,7 @@ const AddRecipeForm = () => {
               onChange={handleChange}
               placeholder="Describe how to prepare this recipe..."
               rows="5"
-              className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 transition ${
+              className={`w-full border rounded-lg p-3 focus:outline-none focus:ring-2 transition text-gray-800 placeholder-gray-400 ${
                 errors.steps
                   ? "border-red-500 focus:ring-red-400"
                   : "border-gray-300 focus:ring-indigo-500"
@@ -142,7 +132,7 @@ const AddRecipeForm = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300"
+            className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 active:scale-95 transition duration-300 shadow-md"
           >
             Submit Recipe
           </button>
@@ -151,7 +141,7 @@ const AddRecipeForm = () => {
         {/* Back Button */}
         <button
           onClick={() => navigate("/")}
-          className="mt-4 w-full text-indigo-600 font-medium hover:underline"
+          className="mt-6 w-full text-indigo-600 font-medium hover:underline transition"
         >
           ← Back to Home
         </button>
